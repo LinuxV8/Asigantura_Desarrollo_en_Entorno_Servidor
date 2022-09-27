@@ -3,8 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>Piedra, papel, tijera.
-    Extras. Programación web en PHP. Bartolomé Sintes Marco. www.mclibre.org</title>
+  <title>Piedra, papel, tijera</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
   </style>
