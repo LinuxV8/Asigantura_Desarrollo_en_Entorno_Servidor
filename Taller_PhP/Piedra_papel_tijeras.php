@@ -23,7 +23,6 @@
   $jugador2 = random_int(1, 3);
   $jugador = random_int(1, 3);
 
-
   switch ($jugador2) {
     case 1:
       $jugador2 = PIEDRA2;
@@ -41,23 +40,12 @@
       $jugador = PIEDRA1;
       break;
     case 2:
-      $jugador= TIJERAS;
+      $jugador = TIJERAS;
       break;
     case 3:
       $jugador = PAPEL;
       break;
   }
-
-  if ($jugador==PIEDRA1 && $jugador2==PIEDRA2 || $jugador==TIJERAS && $jugador2==TIJERAS || $jugador==PAPEL && $jugador2==PAPEL) {
-    $resultado = EMPATA;
-  } elseif ($jugador == PIEDRA1 && $jugador2 == TIJERAS || $jugador == TIJERAS && $jugador2 == PAPEL || $jugador == PAPEL && $jugador2 == PIEDRA2) {
-    $resultado = GANA;
-  } else {
-    $resultado = PIERDE;
-  }
-
-
-
   ?>
   <h1>¡Piedra, papel, tijera!</h1>
 
@@ -73,19 +61,19 @@
       <td><span style="font-size: 7rem"><?php echo $jugador2 ?></span></td>
     </tr>
     <tr>
-
-      <th colspan="2"><?php if ($resultado == EMPATA) {
-                          echo "!Los jugadores han empatado! $resultado";
-                        } elseif ($resultado == PIERDE) {
-                          echo "!Ha ganado el jugador 2! $resultado";
-                        } else {
-                          echo "!Ha ganado el jugador 1! $resultado";
-                        } ?></th>
-      </th>
+      <th colspan="2"><?php
+                      if ($jugador == PIEDRA1 && $jugador2 == PIEDRA2 || $jugador == TIJERAS && $jugador2 == TIJERAS || $jugador == PAPEL && $jugador2 == PAPEL) {
+                        $resultado = EMPATA;
+                        echo "!Los jugadores han empatado! $resultado";
+                      } elseif ($jugador == PIEDRA1 && $jugador2 == TIJERAS || $jugador == TIJERAS && $jugador2 == PAPEL || $jugador == PAPEL && $jugador2 == PIEDRA2) {
+                        $resultado = GANA;
+                        echo "!Ha ganado el jugador 1! $resultado";
+                      } else {
+                        $resultado = PIERDE;
+                        echo "!Ha ganado el jugador 2! $resultado";
+                      } ?></th>
     </tr>
   </table>
-
-
 </body>
 
 </html>
