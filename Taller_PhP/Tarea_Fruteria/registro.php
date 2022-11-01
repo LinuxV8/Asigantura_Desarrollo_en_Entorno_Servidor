@@ -1,4 +1,4 @@
-<form name='entrada' method="POST">
+<form name='registro' method="GET">
 
 <table>
     
