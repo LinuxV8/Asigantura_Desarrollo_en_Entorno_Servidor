@@ -1,0 +1,59 @@
+He implementado todas las mejoras pedidas :
+
+
+
+
+1) Mostrar en detalles y en modificar la opción de siguiente y anterior.
+    
+    ||He añadido los buttons correspondientes en "detalles.php" y tras ello en el index, he comprobado que la     llamada que se hace sea por GET y según la opcion que elija avancen o retrocedas mediantes métodos que he completado en la parte "crudclientes.php"  
+    
+2) Mostrar la lista de clientes con distintos modos de ordenación: nombre, apellido, correo
+electrónico, género o IP y poder navegar por ella.
+    || En el archivo "list.php" he añadido en la cabecera de la tabla la etiqueta "anchor" para poder añadirles 
+        un enlace que al pulsarlo procede a hacer la ordenación correspondiente ascendiente o descendiente. 
+    
+    ||Para esto primero he realizado en el "index.php" variables de sesión, una para que haya un ordenación por 
+         defecto (id) y luego un contador que al no existir o llegar a dos vuelve a uno.
+
+    ||Tras esto meddiante el método getclientes he ampliado sus parametros para ofrecerle el contado y ordenacion   y mediante sentencias preparadas realizo la consulta al base de datos y devuelve los datos en dicha ordenación y según sea el contado 0 o 1 sea asc o des.
+
+3) Mostrar en detalles una bandera del país asociado a la IP ( utilizar geoip y https://flagpedia.net/ )
+
+|| A la hora de entrar a detalles o navegar en el , se obtiene mediante la ip del usuario  un método que realice en "util.php" le hago una petción la una api de ip la información de esa ip, el cuál me devuelve los datos necesarios en json y procedo a obtner lo datos que necesito.(Hay algunas ip restringidas) Mediante el codigo de pais , le paso una petición a falgpedia devolviendome una imagen de la bandera correspondiente y añadiendo una nueva columna en "detalles.php" donde mostrarlo.
+
+
+4) Mejorar las operaciones de Nuevo y Modificar para que chequee que los datos son
+correctos: correo electrónico (no repetido), IP y teléfono con formato 999-999-9999.
+
+    || En los métodos de postAlta y postModificar en "crudClientes.php" he utilizado la función de filtrado para el correo y la ip, mientras que el número lo he chequedo mediante expresiones regulares
+
+
+5) Mostrar una imagen asociada al cliente almacenada previamente en uploads o una imagen por defecto aleatoria generada por https://robohasp.org. sin no existe. En nombre de las fotos tiene el formato 00000XXX.jpg para el cliente con id XXX.
+    
+    || En "crudclientes.php" todas las acciones tienen una ruta generada por un método que cree en "util.php" getfoto donde según la ip genera el nombre a devolver de la img que corresponderia a ese usuario, sino existe se le pasa una foto generada por robohash.
+
+6) Permitir subir o cambiar la foto del cliente en modificar y en nuevo.
+
+||Parecido al anterior ejercicio , a la hora de postmodificar y postnuevo chequeo todos las posibles errores y las condiciones que deben pasar , después muestra un mensaje correspondiente
+
+7) Generar un PDF con los todos detalles de un cliente ( Incluir un botón que indique imprimir)
+
+    ||Mediante la descarga de la extension mpdf de composer, añadiendo en le index una nueva accion para imprimir y crear una nueva vista, escribo el cógico correspondiente en "detallesImprimir.php" 
+
+8) Crear una nueva tabla en la BD de usuarios de la aplicación (User) con tres campos: login,
+password( encriptada ) y rol (0/1), definir varios usuarios y controlar el acceso a la
+aplicación sólo si se introduce el login y el password correctos.
+
+    ||Muestro si es la primera vez la vista de "acceso.php" y en el index chequeo las posibles comprobaciones con los datos de sesion y un método de comprobar si el usuario existe y los datos son correctos, tras esto obtengo todos los datos necesarios del usuario para comstrar su nombre al entrar y sus "privilegios".
+
+
+9) Controlar el acceso a la aplicación en función del rol, si es 0 solo puede acceder a visualizar
+los datos: lista y detalles. Si el rol es 1 podrá además modificar, borrar y eliminar usuarios.
+
+    ||En la parte del index de las acciones "modificar y borrar" solo les permite hacerlo si el usuario con el que accedes tiene el rol 1 sino te lleva a la vista "nopermisos.php"
+
+
+10) Utilizar geoip y el api para javascript https://openlayers.org para mostrar la localización
+geográfica del cliente en un mapa en función de su IP
+
+    ||Igual que con las banderas, en las acciones de detalles obtengo la localizacion mediante su ip y el uso del metodo getLoca el cuál se encuentra en "util.php" e igual que en banderas uso "ip-api" para que me de info de esa ip. Cojo los datos de "lat" y "log" para añadirselos a una ruta de google maps y mediante la eqtiqueta iframe le paso el "source" correspondiente y muestro el resultado en detalles.(Hay alguno restringido)
