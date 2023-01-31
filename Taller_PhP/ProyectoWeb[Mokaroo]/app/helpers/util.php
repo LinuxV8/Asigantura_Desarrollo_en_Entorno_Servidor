@@ -29,7 +29,7 @@ function getbandera($ip){
 
     //Lectura y guradado de los datos de ip
     $ipinfo=unserialize(file_get_contents($infoip));
-    var_dump($ipinfo);
+    //var_dump($ipinfo);
 
     if (isset($ipinfo['countryCode'])){
     //Codigo de pais
